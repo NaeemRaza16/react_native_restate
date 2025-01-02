@@ -1,13 +1,20 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import images from "@/constants/images";
 import icons from "@/constants/icons";
+import { login } from "@/lib/appwrite";
 
 const SignIn = () => {
-  const handlerLogin = () => {
-    // Add your google login logic here
+  const handlerLogin = async () => {
+    const result = await login();
+
+    if (result) {
+      console.log("Login Success");
+    } else {
+      Alert.alert("Error", "Failed to login");
+    }
   };
   return (
     <SafeAreaView className="bg-white h-full">
